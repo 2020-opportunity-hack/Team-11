@@ -56,4 +56,7 @@
     <string name="text_speedbreakers">Speed Breakers</string>
     <!-- Visibility -->
     <string name="text_luminosity">Luminosity</string>
+    <string name="heading">Road Lighting Condition Survey</string>
+    <string name="open_camera_button">Open Camera</string>
+    <string name="back_home_button">Back Home</string>
 </resources>

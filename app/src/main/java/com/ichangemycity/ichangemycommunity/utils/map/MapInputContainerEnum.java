@@ -10,5 +10,6 @@ public enum MapInputContainerEnum implements Serializable {
     VisibilityFragment,
     DrivabilityFragment,
     SurveyFormFragment,
+    LuminosityFragment,
     Unknown;
 }

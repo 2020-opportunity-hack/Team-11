@@ -53,6 +53,9 @@ public class SurveyHomeFragment extends Fragment {
             case VisibilityFragment:
                 fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new VisibilityFragment());
                 break;
+            case LuminosityFragment:
+                fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new LuminosityFragment());
+                break;
             case DrivabilityFragment:
                 fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new DrivabilityFragment());
                 break;
