@@ -6,16 +6,11 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.camera.core.CameraSelector;
-import androidx.camera.core.ImageCapture;
-import androidx.camera.core.Preview;
-import androidx.camera.lifecycle.ProcessCameraProvider;
-import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.LifecycleOwner;
+
+import com.ichangemycity.ichangemycommunity.R;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -55,16 +50,18 @@ public class CameraUtils {
         }
     }
 
-    public File createFile(File baseFolder, String format, String extension){
-         return new File(baseFolder, new SimpleDateFormat(format, Locale.US).format(System.currentTimeMillis()) + extension);
+    public File createFile(File baseFolder, String format, String extension) {
+        return new File(baseFolder, new SimpleDateFormat(format, Locale.US).format(System.currentTimeMillis()) + extension);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public File getOutputDirectory(Context context) {
         Context appContext = context.getApplicationContext();
         File[] mediaDir = context.getExternalMediaDirs();
-        if (mediaDir != null)
-            return mediaDir[0];
-      return appContext.getFilesDir();
+        if (mediaDir != null) {
+            File file = new File(mediaDir[0], appContext.getResources().getString(R.string.app_name));
+            return file;
+        }
+        return appContext.getFilesDir();
     }
 }

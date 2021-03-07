@@ -63,6 +63,8 @@ public class SurveyHomeFragment extends Fragment {
                 fragmentUtils.replaceFragment(R.id.map_view_container, TAG, getFragmentManager(), new MapViewFragment());
                 fragmentUtils.replaceFragment(R.id.input_view_container, TAG, getFragmentManager(), new SurveyFormFragment());
                 break;
+            case CameraFragment:
+                fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new CameraFragment());
             case Unknown:
                 try {
                     throw new IOException();

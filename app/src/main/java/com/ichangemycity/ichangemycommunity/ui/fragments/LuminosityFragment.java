@@ -17,6 +17,8 @@ import com.ichangemycity.ichangemycommunity.R;
 import com.ichangemycity.ichangemycommunity.ui.activities.CameraActivity;
 import com.ichangemycity.ichangemycommunity.ui.listeners.ReplaceInputContainerListener;
 import com.ichangemycity.ichangemycommunity.utils.camera.CameraUtils;
+import com.ichangemycity.ichangemycommunity.utils.map.MapInputContainerEnum;
+import com.ichangemycity.ichangemycommunity.utils.map.SurveyDropDownEnum;
 import com.ichangemycity.ichangemycommunity.utils.map.UserClient;
 
 public class LuminosityFragment extends Fragment implements View.OnClickListener {
@@ -71,8 +73,8 @@ public class LuminosityFragment extends Fragment implements View.OnClickListener
             case R.id.open_camera_button:
                 cameraUtils = new CameraUtils();
                 if (cameraUtils.isCameraPermissionGranted(requireActivity())) {
-                    Intent i = new Intent(getActivity(), CameraActivity.class);
-                    startActivity(i);
+                    userClient.setMapInputContainerEnum(MapInputContainerEnum.CameraFragment);
+                    replaceInputContainerListener.onReplaceInputContainer();
                 } else {
                     cameraUtils.requestCameraPermission(requireActivity());
                 }
@@ -84,7 +86,7 @@ public class LuminosityFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    @Override
+    /*@Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
@@ -95,6 +97,6 @@ public class LuminosityFragment extends Fragment implements View.OnClickListener
                 Toast.makeText(requireActivity(), "Permissions not granted by the user.", Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
 
 }
