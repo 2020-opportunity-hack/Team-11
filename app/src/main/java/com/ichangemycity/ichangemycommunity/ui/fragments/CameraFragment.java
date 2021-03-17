@@ -94,7 +94,7 @@ public class CameraFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void captureImage() {
 
-        File photoFile = cameraUtils.createFile(cameraUtils.getOutputDirectory(requireContext()), FILENAME, PHOTO_EXTENSION);
+        File photoFile =  cameraUtils.getOutputDirectory(requireContext()); //cameraUtils.createFile(cameraUtils.getOutputDirectory(requireContext()), FILENAME, PHOTO_EXTENSION);
 
         ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(photoFile).build();
 

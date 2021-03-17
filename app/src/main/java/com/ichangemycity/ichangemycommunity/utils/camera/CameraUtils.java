@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Environment;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
@@ -56,12 +58,26 @@ public class CameraUtils {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public File getOutputDirectory(Context context) {
+
         Context appContext = context.getApplicationContext();
+        String fileName = String.valueOf(System.currentTimeMillis()) + ".jpg";
+        File mediaStorageDir = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), appContext.getResources().getString(R.string.app_name));
+
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
+            Log.d("APP_TAG", "failed to create directory");
+        }
+
+        // Return the file target for the photo based on filename
+        File file = new File(mediaStorageDir.getPath() + File.separator + fileName);
+
+        return file;
+        /*Context appContext = context.getApplicationContext();
         File[] mediaDir = context.getExternalMediaDirs();
         if (mediaDir != null) {
             File file = new File(mediaDir[0], appContext.getResources().getString(R.string.app_name));
             return file;
         }
-        return appContext.getFilesDir();
+        return appContext.getFilesDir();*/
     }
 }
