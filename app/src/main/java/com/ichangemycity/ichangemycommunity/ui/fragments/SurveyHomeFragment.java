@@ -40,6 +40,8 @@ public class SurveyHomeFragment extends Fragment {
 
     private void renderInputViewContainer() {
         mapInputContainerEnum = userClient.getMapInputContainerEnum();
+        Bundle bundle = userClient.getBundle();
+
         switch (mapInputContainerEnum) {
             case LoaderFragment:
                 fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new LoaderFragment());
@@ -53,12 +55,21 @@ public class SurveyHomeFragment extends Fragment {
             case VisibilityFragment:
                 fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new VisibilityFragment());
                 break;
+            case LuminosityFragment:
+                fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new LuminosityFragment());
+                break;
             case DrivabilityFragment:
                 fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new DrivabilityFragment());
                 break;
             case SurveyFormFragment:
                 fragmentUtils.replaceFragment(R.id.map_view_container, TAG, getFragmentManager(), new MapViewFragment());
                 fragmentUtils.replaceFragment(R.id.input_view_container, TAG, getFragmentManager(), new SurveyFormFragment());
+                break;
+            case CameraFragment:
+                fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new CameraFragment());
+                break;
+            case LuminosityProgressFragment:
+                fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), bundle, new LuminosityProgressFragment());
                 break;
             case Unknown:
                 try {
