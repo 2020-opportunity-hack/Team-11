@@ -7,5 +7,5 @@ public enum SurveyDropDownEnum implements Serializable {
     Walkability,
     Visibility,
     Drivability,
-    Unknown;
+    Luminosity
 }

@@ -1,6 +1,7 @@
 package com.ichangemycity.ichangemycommunity.utils.map;
 
 import android.app.Application;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -21,6 +22,7 @@ public class UserClient extends Application {
     private LatLng userLatLng;
     private boolean isInitialBroadcast = true;
     private MapInputContainerEnum mapInputContainerEnum;
+    private Bundle bundle;
     private Map<SurveyDropDownEnum, List<Survey>> surveyMap = new HashMap<>();
     private List<String> surveyDropDownList = new ArrayList<>();
     private Survey survey;
@@ -28,6 +30,10 @@ public class UserClient extends Application {
 
     public MapInputContainerEnum getMapInputContainerEnum() {
         return mapInputContainerEnum;
+    }
+
+    public Bundle getBundle(){
+        return bundle;
     }
 
     // Retrieve user details from db, mocked driver details are fetched below
@@ -73,6 +79,10 @@ public class UserClient extends Application {
 
     public void setMapInputContainerEnum(MapInputContainerEnum mapInputContainerEnum) {
         this.mapInputContainerEnum = mapInputContainerEnum;
+    }
+
+    public void setBundle(Bundle bundle) {
+        this.bundle = bundle;
     }
 
     public String getCurrentTimeStamp() {

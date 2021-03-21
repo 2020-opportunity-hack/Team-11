@@ -65,8 +65,8 @@ public class SurveyCategoryFragment extends Fragment implements View.OnClickList
                 replaceInputContainerListener.onReplaceInputContainer();
                 break;
             case R.id.visibility:
-                userClient.setSurveyCategory(SurveyDropDownEnum.Visibility);
-                userClient.setMapInputContainerEnum(MapInputContainerEnum.VisibilityFragment);
+                userClient.setSurveyCategory(SurveyDropDownEnum.Luminosity);
+                userClient.setMapInputContainerEnum(MapInputContainerEnum.LuminosityFragment);
                 replaceInputContainerListener.onReplaceInputContainer();
                 break;
         }
