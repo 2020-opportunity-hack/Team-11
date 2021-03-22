@@ -36,6 +36,7 @@ public class LuminosityProgressFragment extends Fragment implements View.OnClick
 
     private Button mTakeAnotherPhotoBtn;
     private Button mSubmitBtn;
+    private Button mDeletePhotoBtn;
     private ImageView thumbnail;
     private TextView thumbnailText;
     private CameraUtils cameraUtils;
@@ -56,7 +57,7 @@ public class LuminosityProgressFragment extends Fragment implements View.OnClick
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_captured_image, null, false);
+        View view = inflater.inflate(R.layout.fragment_luminosity_progress, null, false);
 
         mSensorManager = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
         mLuminosity = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
@@ -68,6 +69,8 @@ public class LuminosityProgressFragment extends Fragment implements View.OnClick
         mTakeAnotherPhotoBtn.setOnClickListener(this::onClick);
         mSubmitBtn = view.findViewById(R.id.submit_luminosity);
         mSubmitBtn.setOnClickListener(this::onClick);
+        mDeletePhotoBtn = view.findViewById(R.id.delete_photo_button);
+        mDeletePhotoBtn.setOnClickListener(this::onClick);
 
         return view;
     }
@@ -105,16 +108,21 @@ public class LuminosityProgressFragment extends Fragment implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.take_another_photo_button:
-
-                /**
-                 cameraUtils = new CameraUtils();
+                cameraUtils = new CameraUtils();
                 if (cameraUtils.isCameraPermissionGranted(requireActivity())) {
                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(cameraIntent, CAMERA_REQUEST);
                 } else {
                     cameraUtils.requestCameraPermission(requireActivity());
                 }
-                break; **/
+                break;
+
+            case R.id.delete_photo_button:
+                mSubmitBtn.setEnabled(false);
+                thumbnail.setVisibility(View.GONE);
+                thumbnailText.setVisibility(View.GONE);
+                mDeletePhotoBtn.setVisibility(View.GONE);
+                Toast.makeText(requireContext(), "Please take another image", Toast.LENGTH_LONG).show();
 
             case R.id.submit_luminosity:
                 // TODO: action on home button
@@ -123,31 +131,28 @@ public class LuminosityProgressFragment extends Fragment implements View.OnClick
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
-    {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == MY_CAMERA_PERMISSION_CODE)
-        {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-            {
+        if (requestCode == MY_CAMERA_PERMISSION_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(requireActivity(), "camera permission granted", Toast.LENGTH_LONG).show();
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
-            }
-            else
-            {
+            } else {
                 Toast.makeText(requireActivity(), "camera permission denied", Toast.LENGTH_LONG).show();
             }
         }
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK)
-        {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
+            thumbnail.setVisibility(View.VISIBLE);
             thumbnail.setImageBitmap(photo);
+            if(!mSubmitBtn.isEnabled())
+                mSubmitBtn.setEnabled(true);
+            mDeletePhotoBtn.setVisibility(View.VISIBLE);
         }
     }
 
@@ -156,10 +161,14 @@ public class LuminosityProgressFragment extends Fragment implements View.OnClick
 
         if (sensorEvent.sensor.getType() == Sensor.TYPE_LIGHT) {
             float currentReading = sensorEvent.values[0];
+            thumbnailText.setVisibility(View.VISIBLE);
             thumbnailText.setText(currentReading + " Lumens");
             mSensorManager.unregisterListener(this);
+            if(!mSubmitBtn.isEnabled())
+                mSubmitBtn.setEnabled(true);
         }
     }
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {

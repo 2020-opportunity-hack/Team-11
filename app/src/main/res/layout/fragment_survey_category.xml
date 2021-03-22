@@ -8,6 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/select_category"
             android:layout_width="match_parent"
@@ -24,7 +25,7 @@
         <Button
             android:id="@+id/walkability"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height"
+            android:layout_height="100dp"
             android:layout_below="@id/select_category"
             android:layout_marginVertical="20dp"
             android:layout_marginLeft="20dp"
@@ -39,14 +40,14 @@
         <Button
             android:id="@+id/visibility"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height"
+            android:layout_height="100dp"
             android:layout_below="@id/walkability"
             android:layout_marginVertical="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/rounded_button_yellow"
             android:fontFamily="sans-serif"
-            android:text="@string/foothpath_condition"
+            android:text="@string/road_lighting_condition"
             android:textAllCaps="false"
             android:textColor="#333333"
             android:textSize="18sp"
@@ -54,7 +55,7 @@
         <Button
             android:id="@+id/drivability"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height"
+            android:layout_height="100dp"
             android:layout_below="@id/visibility"
             android:layout_marginVertical="20dp"
             android:layout_marginLeft="20dp"
@@ -66,5 +67,21 @@
             android:textColor="#333333"
             android:textSize="18sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/back_home_button"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_below="@id/drivability"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="20dp"
+            android:background="@drawable/rounded_button_yellow"
+            android:fontFamily="sans-serif"
+            android:text="@string/back_home_button"
+            android:textAllCaps="false"
+            android:textColor="#333333"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 </LinearLayout>

@@ -65,4 +65,11 @@
     <string name="heading">Road Lighting Condition Survey</string>
     <string name="open_camera_button">Open Camera</string>
     <string name="back_home_button">Back Home</string>
+
+    <string name="heading_public_amenities">Public Amenities Survey</string>
+    <string name="proceed_to_location">Proceed to Location</string>
+    <string name="quick_description">A quick description about the survey</string>
+    <string name="confirm_location">Confirm Location</string>
+    <string name="choose_survey">Choose the survey you wish to take</string>
+    <string name="end_survey">End Survey</string>
 </resources>

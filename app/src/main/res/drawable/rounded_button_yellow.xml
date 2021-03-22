@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
+    <item android:state_enabled="true">
         <shape android:shape="rectangle">
             <!--make a gradient background-->
             <gradient
@@ -10,7 +10,20 @@
                 android:angle="0"
                 />
 
-            <corners android:radius="24dp"/>
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <!--make a gradient background-->
+            <gradient
+                android:type="linear"
+                android:startColor="@color/darkGrey"
+                android:endColor="@color/greyTrack"
+                android:angle="0"
+                />
+
+            <corners android:radius="8dp"/>
         </shape>
     </item>
 </selector>

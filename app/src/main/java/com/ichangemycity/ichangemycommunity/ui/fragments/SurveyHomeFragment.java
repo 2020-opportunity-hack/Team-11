@@ -58,6 +58,9 @@ public class SurveyHomeFragment extends Fragment {
             case LuminosityFragment:
                 fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new LuminosityFragment());
                 break;
+            case PublicAmenitiesFragment:
+                fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new PublicAmenitiesFragment());
+                break;
             case DrivabilityFragment:
                 fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new DrivabilityFragment());
                 break;
@@ -71,6 +74,15 @@ public class SurveyHomeFragment extends Fragment {
             case LuminosityProgressFragment:
                 fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), bundle, new LuminosityProgressFragment());
                 break;
+            case PublicAmenitiesProgressFragment:
+                fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new PublicAmenitiesProgressFragment());
+                break;
+            case ChooseSurveyFragment:
+                fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new ChooseSurveyFragment());
+                break;
+//            case SurveyQuestionsFragment:
+//                fragmentUtils.replaceFragment(R.id.surveyHomeContainer, TAG, getFragmentManager(), new SurveyQuestionsFragment());
+//                break;
             case Unknown:
                 try {
                     throw new IOException();

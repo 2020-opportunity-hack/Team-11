@@ -14,16 +14,15 @@ import androidx.fragment.app.Fragment;
 import com.ichangemycity.ichangemycommunity.R;
 import com.ichangemycity.ichangemycommunity.ui.listeners.ReplaceInputContainerListener;
 import com.ichangemycity.ichangemycommunity.utils.map.MapInputContainerEnum;
-import com.ichangemycity.ichangemycommunity.utils.map.SurveyDropDownEnum;
 import com.ichangemycity.ichangemycommunity.utils.map.UserClient;
 
-public class SurveyCategoryFragment extends Fragment implements View.OnClickListener {
-    private static final String TAG = SurveyCategoryFragment.class.getSimpleName();
+public class ChooseSurveyFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = LuminosityFragment.class.getSimpleName();
     private UserClient userClient;
     private ReplaceInputContainerListener replaceInputContainerListener;
-    private Button walkabilityButton;
-    private Button visibilityButton;
-    private Button drivabilityButton;
+
+    private Button mToiletsBtn;
+    private Button mSeatingBtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,13 +33,12 @@ public class SurveyCategoryFragment extends Fragment implements View.OnClickList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_survey_category, null, false);
-        walkabilityButton = view.findViewById(R.id.walkability);
-        visibilityButton = view.findViewById(R.id.visibility);
-        drivabilityButton = view.findViewById(R.id.drivability);
-        walkabilityButton.setOnClickListener(this::onClick);
-        visibilityButton.setOnClickListener(this::onClick);
-        drivabilityButton.setOnClickListener(this::onClick);
+        View view = inflater.inflate(R.layout.fragment_choose_survey, null, false);
+        mToiletsBtn = view.findViewById(R.id.take_survey_toilets_button);
+        mToiletsBtn.setOnClickListener(this::onClick);
+        mSeatingBtn = view.findViewById(R.id.take_survey_seating_button);
+        mSeatingBtn.setOnClickListener(this::onClick);
+
         return view;
     }
 
@@ -64,21 +62,18 @@ public class SurveyCategoryFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.walkability:
-                userClient.setSurveyCategory(SurveyDropDownEnum.Walkability);
-                userClient.setMapInputContainerEnum(MapInputContainerEnum.WalkabilityFragment);
+            case R.id.take_survey_toilets_button:
+                //TODO: Call to backend to fetch questions
+                userClient.setMapInputContainerEnum(MapInputContainerEnum.SurveyQuestionsFragment);
                 replaceInputContainerListener.onReplaceInputContainer();
                 break;
-            case R.id.drivability:
-                userClient.setSurveyCategory(SurveyDropDownEnum.PublicAmenities);
-                userClient.setMapInputContainerEnum(MapInputContainerEnum.PublicAmenitiesFragment);
+
+            case R.id.take_survey_seating_button:
+                //TODO: Call to backend to fetch questions
+                userClient.setMapInputContainerEnum(MapInputContainerEnum.SurveyQuestionsFragment);
                 replaceInputContainerListener.onReplaceInputContainer();
                 break;
-            case R.id.visibility:
-                userClient.setSurveyCategory(SurveyDropDownEnum.Luminosity);
-                userClient.setMapInputContainerEnum(MapInputContainerEnum.LuminosityFragment);
-                replaceInputContainerListener.onReplaceInputContainer();
-                break;
+
         }
     }
 }
