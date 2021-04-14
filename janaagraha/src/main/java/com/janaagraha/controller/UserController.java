@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.janaagraha.entity.User;
+import com.janaagraha.dto.User;
 import com.janaagraha.exception.UserNotFoundException;
 import com.janaagraha.repository.UserRepository;
 
