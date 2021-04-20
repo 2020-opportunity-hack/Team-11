@@ -19,15 +19,15 @@ JanagrahaaUtils janagrahaaUtils;
 SurveyRepository surveyRepository;
 
 
-public List<SurveyEntity> getAllSurveys(Long latLong) {
-    List<Survey> surveyList = surveyRepository.findAll(latLong);
-    return janagrahaaUtils.mapList(surveyList,SurveyEntity.class);
-}
+/*public List<Survey> getAllSurveys(Long latLong) {
+    List<SurveyEntity> surveyList = surveyRepository.findAllByLatLong(latLong);
+    return janagrahaaUtils.mapList(surveyList,Survey.class);
+}*/
 
-public List<SurveyEntity> getAllSurveys(String location) {
-    List<Survey> surveyList = surveyRepository.findAll(location);
-    return janagrahaaUtils.mapList(surveyList,SurveyEntity.class);
-}
+/*public List<Survey> getAllSurveys(String location) {
+    List<SurveyEntity> surveyList = surveyRepository.findAllByLocation(location);
+    return janagrahaaUtils.mapList(surveyList,Survey.class);
+}*/
 
 
 }

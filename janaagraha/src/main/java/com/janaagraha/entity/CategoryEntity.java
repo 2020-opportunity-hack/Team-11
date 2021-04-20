@@ -1,7 +1,7 @@
 package com.janaagraha.entity;
 
-import javax.persistence.Entity;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+@Document
 public class CategoryEntity {
 }

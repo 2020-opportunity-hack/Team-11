@@ -1,16 +1,16 @@
 package com.janaagraha.repository;
+import com.janaagraha.dto.Survey;
+import com.janaagraha.entity.SurveyEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-
-import com.janaagraha.dto.Survey;
 
 import java.util.List;
 
 @Repository
-public interface SurveyRepository extends MongoRepository<Survey, Long> {
+public interface SurveyRepository extends MongoRepository<SurveyEntity, Long> {
 
-public List<Survey> findAll(Long latLong);
+/*public List<SurveyEntity> findAllByLatLong(Long latLong);*/
 
-public List<Survey> findAll(String location);
-
+//public List<SurveyEntity> findAllByLocation(String location);
 }
+

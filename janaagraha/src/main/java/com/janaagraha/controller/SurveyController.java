@@ -25,30 +25,35 @@ SurveyRepository surveyRepo;
 @Autowired
 SurveyService surveyService;
 
+/*
 @GetMapping("/survey/geolocation")
-public List<SurveyEntity> findAllByGeoLocation(@PathVariable Long latLong) {
+public List<Survey> findAllByGeoLocation(@PathVariable Long latLong) {
     return surveyService.getAllSurveys(latLong);
 }
+*/
 
-@GetMapping("/survey/location")
-public List<SurveyEntity> findAllByLocation(@PathVariable String location) {
+/*@GetMapping("/survey/location")
+public List<Survey> findAllByLocation(@PathVariable String location) {
     return surveyService.getAllSurveys(location);
-}
+}*/
 
-
+/*
 @GetMapping("/survey/{id}")
 public Survey findOne(@PathVariable Long id) throws SurveyNotFoundException {
-    Optional<Survey> survey = surveyRepo.findById(id);
+    Optional<SurveyEntity> survey = surveyRepo.findById(id);
     if (survey.isPresent()) {
-        return survey.get();
+    return null;
+    //TODO to do model mapping
+       // return survey.get();
     } else {
         throw new SurveyNotFoundException("Survey with ID -" + id + " is not found");
     }
-}
+}*/
 
 @PostMapping("/survey")
-public Survey insertSurvey(@RequestBody Survey survey) {
+public SurveyEntity insertSurvey(@RequestBody SurveyEntity survey) {
     System.out.println("Inserting survey");
+
     return surveyRepo.save(survey);
 }
 
