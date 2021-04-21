@@ -1,59 +1,55 @@
 package com.janaagraha.controller;
-import java.util.List;
-import java.util.Optional;
 
-import com.janaagraha.Service.SurveyService;
-import com.janaagraha.entity.SurveyEntity;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.janaagraha.exception.SurveyNotFoundException;
+import com.janaagraha.entity.Survey;
 import com.janaagraha.repository.SurveyRepository;
-
 
 @RestController
 @RequestMapping("/v1")
 public class SurveyController {
-@Autowired
-SurveyRepository surveyRepo;
-@Autowired
-SurveyService surveyService;
 
-/*
-@GetMapping("/survey/geolocation")
-public List<Survey> findAllByGeoLocation(@PathVariable Long latLong) {
-    return surveyService.getAllSurveys(latLong);
-}
-*/
+	@Autowired
+	SurveyRepository surveyRepo;
 
-/*@GetMapping("/survey/location")
-public List<Survey> findAllByLocation(@PathVariable String location) {
-    return surveyService.getAllSurveys(location);
-}*/
+	@GetMapping("/survey/{location}")
+	public List<Survey> retriveSurveyByGeoLocation(@PathVariable String location) {
+		return surveyRepo.findByLocation(location);
+	}
 
-/*
-@GetMapping("/survey/{id}")
-public Survey findOne(@PathVariable Long id) throws SurveyNotFoundException {
-    Optional<SurveyEntity> survey = surveyRepo.findById(id);
-    if (survey.isPresent()) {
-    return null;
-    //TODO to do model mapping
-       // return survey.get();
-    } else {
-        throw new SurveyNotFoundException("Survey with ID -" + id + " is not found");
-    }
-}*/
+	@GetMapping("/survey/{id}/byid")
+	public Survey retriveSurveyById(@PathVariable String id) {
+		return surveyRepo.findById(id).orElse(new Survey());
+	}
 
-@PostMapping("/survey")
-public SurveyEntity insertSurvey(@RequestBody SurveyEntity survey) {
-    System.out.println("Inserting survey");
+	@GetMapping("/survey/LatitudeAndLongitude")
+	public List<Survey> retriveSurveyByLatitudeAndLongitude(@RequestParam String latitude,
+			@RequestParam String longitude) {
+		return surveyRepo.findByLatitudeAndLongitude(latitude, longitude);
+	}
 
-    return surveyRepo.save(survey);
-}
+	@GetMapping("/survey/remove")
+	public void removeAllSurvey() {
+		surveyRepo.deleteAll();
+	}
+
+	@GetMapping("/survey")
+	public List<Survey> findAllSurvey() {
+		return surveyRepo.findAll();
+	}
+
+	@PostMapping("/survey")
+	public Survey insertSurvey(@RequestBody Survey survey) {
+		return surveyRepo.save(survey);
+	}
 
 }

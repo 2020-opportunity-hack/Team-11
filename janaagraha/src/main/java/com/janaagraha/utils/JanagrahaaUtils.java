@@ -1,4 +1,4 @@
-package com.janaagraha.Utils;
+package com.janaagraha.utils;
 
 
 import org.modelmapper.ModelMapper;
