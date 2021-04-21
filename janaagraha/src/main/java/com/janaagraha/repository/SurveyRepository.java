@@ -1,5 +1,4 @@
 package com.janaagraha.repository;
-import com.janaagraha.dto.Survey;
 import com.janaagraha.entity.SurveyEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

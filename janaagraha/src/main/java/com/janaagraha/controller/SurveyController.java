@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.janaagraha.Service.SurveyService;
-import com.janaagraha.dto.Survey;
 import com.janaagraha.entity.SurveyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

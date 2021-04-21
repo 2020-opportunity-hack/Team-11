@@ -1,7 +1,6 @@
 package com.janaagraha.Service;
 
 import com.janaagraha.Utils.JanagrahaaUtils;
-import com.janaagraha.dto.Survey;
 import com.janaagraha.entity.SurveyEntity;
 import com.janaagraha.repository.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
